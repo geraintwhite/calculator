@@ -13,19 +13,17 @@ main(int argc, char **argv)
 {
   if (argc < 2)
   {
-    printf("Expression required\n");
+    printf("Usage: calculator expression\n");
+    printf("e.g    calculator '5 1 2 + 4 * + 3 -'\n");
     return 1;
   }
 
-  char *expression[argc - 1];
-
   int i;
-  for (i = 1; i < argc; ++i)
-  {
-    expression[i - 1] = argv[i];
-  }
+  char **expression;
 
-  printf("Result: %d\n", evaluate_rpn(expression, argc - 1));
+  expression = split(argv[1], " ", &i);
+
+  printf("Result: %d\n", evaluate_rpn(expression, i));
 
   return 0;
 }
