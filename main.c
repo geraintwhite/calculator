@@ -21,7 +21,7 @@ main(int argc, char **argv)
   int i;
   char **expression;
 
-  expression = split(argv[1], " ", &i);
+  split(argv[1], " ", &expression, &i);
 
   printf("Result: %d\n", evaluate_rpn(expression, i));
 
