@@ -13,8 +13,8 @@ main(int argc, char **argv)
 {
   if (argc < 2)
   {
-    printf("Usage: calculator expression\n");
-    printf("e.g    calculator '5 1 2 + 4 * + 3 -'\n");
+    printf("Usage: %s expression\n", argv[0]);
+    printf("e.g    %s '5 1 2 + 4 * + 3 -'\n", argv[0]);
     return 1;
   }
 
