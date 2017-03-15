@@ -10,7 +10,7 @@ create_stack()
 
   stack->size = MAX_SIZE;
   stack->top = -1;
-  stack->stack = malloc(sizeof(int) * stack->size);
+  stack->stack = (void **) malloc(sizeof(void *) * stack->size);
 
   return stack;
 }
@@ -30,19 +30,19 @@ is_full(Stack *stack)
 }
 
 
-int
-peek(Stack *stack)
+void
+peek(Stack *stack, void *result)
 {
-  return stack->stack[stack->top];
+  result = stack->stack[stack->top];
 }
 
 
-int
-pop(Stack *stack)
+void
+pop(Stack *stack, void *result)
 {
   if (!is_empty(stack))
   {
-    return stack->stack[stack->top--];
+    result = stack->stack[stack->top--];
   }
   else
   {
@@ -52,7 +52,7 @@ pop(Stack *stack)
 
 
 void
-push(Stack *stack, int data)
+push(Stack *stack, void *data)
 {
   if (!is_full(stack))
   {

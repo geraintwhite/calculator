@@ -36,16 +36,19 @@ evaluate_rpn(char **expression, int num)
 
     if (*token == '+' || *token == '-' || *token == '*' || *token == '/')
     {
-      int b = pop(stack);
-      int a = pop(stack);
+      int a, b;
+      pop(stack, &a);
+      pop(stack, &b);
       int result = calculate(a, b, *token);
-      push(stack, result);
+      printf("%d %c %d = %d\n", a, *token, b, result);
+      push(stack, &result);
     }
     else
     {
-      push(stack, atoi(token));
+      int num = atoi(token);
+      push(stack, &num);
     }
   }
 
-  return pop(stack);
+  pop(stack, result);
 }
