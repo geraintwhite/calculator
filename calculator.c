@@ -86,6 +86,7 @@ void
 infix_to_rpn(char **expression, int num, char ***result, int *resnum)
 {
   Stack *stack = create_stack();
+  int j = 0;
 
   int i;
   for (i = 0; i < num; ++i)
@@ -96,6 +97,7 @@ infix_to_rpn(char **expression, int num, char ***result, int *resnum)
     {
       while (!is_empty(stack) && precedence(peek(stack)) >= precedence(*token))
       {
+        ++j;
         printf("%c ", pop(stack));
       }
       push(stack, *token);
@@ -109,20 +111,27 @@ infix_to_rpn(char **expression, int num, char ***result, int *resnum)
       char topToken = pop(stack);
       while (topToken != '(')
       {
+        ++j;
         printf("%c ", topToken);
         topToken = pop(stack);
       }
     }
     else
     {
+      ++j;
       printf("%s ", token);
     }
   }
 
   while (!is_empty(stack))
   {
-    printf("%c ", pop(stack));
+    ++j;
+    char s[2] = "\0";
+    s[0] = pop(stack);
+    printf("%s ", s);
   }
 
   printf("\n");
+
+  *resnum = j;
 }

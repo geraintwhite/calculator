@@ -26,8 +26,10 @@ main(int argc, char **argv)
   char **postfix = 0;
 
   split(argv[1], " ", &infix, &i);
+  printf("%d\n", i);
 
   infix_to_rpn(infix, i, &postfix, &j);
+  printf("%d\n", j);
   //evaluate_rpn(postfix, j, &result);
 
   //printf("Result: %d\n", result);
