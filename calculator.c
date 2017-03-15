@@ -83,7 +83,7 @@ evaluate_rpn(char **expression, int num, int *result)
 
 
 void
-infix_to_rpn(char **expression, int num)
+infix_to_rpn(char **expression, int num, char ***result, int *resnum)
 {
   Stack *stack = create_stack();
 
@@ -109,7 +109,7 @@ infix_to_rpn(char **expression, int num)
       char topToken = pop(stack);
       while (topToken != '(')
       {
-        printf("%c ", pop(stack));
+        printf("%c ", topToken);
         topToken = pop(stack);
       }
     }

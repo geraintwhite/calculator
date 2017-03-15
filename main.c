@@ -19,14 +19,15 @@ main(int argc, char **argv)
     return 1;
   }
 
-  int i;
+  int i = 0;
+  int j = 0;
   int result = 0;
   char **infix = 0;
   char **postfix = 0;
 
   split(argv[1], " ", &infix, &i);
 
-  infix_to_rpn(infix, i);
+  infix_to_rpn(infix, i, &postfix, &j);
   //evaluate_rpn(postfix, j, &result);
 
   //printf("Result: %d\n", result);
