@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdbool.h>
+#include <stdint.h>
 
 #include "stack.c"
 #include "string.c"
@@ -19,11 +20,16 @@ main(int argc, char **argv)
   }
 
   int i;
-  char **expression;
+  int result = 0;
+  char **infix = 0;
+  char **postfix = 0;
 
-  split(argv[1], " ", &expression, &i);
+  split(argv[1], " ", &infix, &i);
 
-  printf("Result: %d\n", evaluate_rpn(expression, i));
+  infix_to_rpn(infix, i);
+  //evaluate_rpn(postfix, j, &result);
+
+  //printf("Result: %d\n", result);
 
   return 0;
 }
