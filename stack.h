@@ -5,5 +5,5 @@ typedef struct
 {
   int size;
   int top;
-  int *stack;
+  void **stack;
 } Stack;
