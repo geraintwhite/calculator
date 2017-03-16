@@ -63,7 +63,6 @@ evaluate_rpn(char **expression, int num, int *result)
   for (i = 0; i < num; ++i)
   {
     char *token = expression[i];
-    printf("token %s\n", token);
 
     if (*token == '+' || *token == '-' || *token == '*' || *token == '/')
     {
