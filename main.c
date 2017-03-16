@@ -21,7 +21,7 @@ main(int argc, char **argv)
 
   int i = 0;
   int j = 0;
-  int result = 0;
+  float result = 0;
   char **infix = 0;
   char **postfix = 0;
 
@@ -30,7 +30,7 @@ main(int argc, char **argv)
   infix_to_rpn(infix, i, &postfix, &j);
   evaluate_rpn(postfix, j, &result);
 
-  printf("Result: %d\n", result);
+  printf("Result: %f\n", result);
 
   return 0;
 }

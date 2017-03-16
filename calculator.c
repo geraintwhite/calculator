@@ -1,7 +1,7 @@
-int
-calculate(int a, int b, char token)
+float
+calculate(float a, float b, char token)
 {
-  int result = 0;
+  float result = 0;
 
   if (token == '+')
   {
@@ -55,7 +55,7 @@ precedence(char token)
 
 
 void
-evaluate_rpn(char **expression, int num, int *result)
+evaluate_rpn(char **expression, int num, float *result)
 {
   Stack *stack = create_stack();
 
@@ -66,14 +66,14 @@ evaluate_rpn(char **expression, int num, int *result)
 
     if (*token == '+' || *token == '-' || *token == '*' || *token == '/')
     {
-      int b = pop(stack);
-      int a = pop(stack);
-      int result = calculate(a, b, *token);
+      float b = pop(stack);
+      float a = pop(stack);
+      float result = calculate(a, b, *token);
       push(stack, result);
     }
     else
     {
-      push(stack, atoi(token));
+      push(stack, atof(token));
     }
   }
 

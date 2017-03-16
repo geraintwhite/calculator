@@ -10,7 +10,7 @@ create_stack()
 
   stack->size = MAX_SIZE;
   stack->top = -1;
-  stack->stack = malloc(sizeof(int) * stack->size);
+  stack->stack = malloc(sizeof(float) * stack->size);
 
   return stack;
 }
@@ -30,14 +30,14 @@ is_full(Stack *stack)
 }
 
 
-int
+float
 peek(Stack *stack)
 {
   return stack->stack[stack->top];
 }
 
 
-int
+float
 pop(Stack *stack)
 {
   if (!is_empty(stack))
@@ -52,7 +52,7 @@ pop(Stack *stack)
 
 
 void
-push(Stack *stack, int data)
+push(Stack *stack, float data)
 {
   if (!is_full(stack))
   {
