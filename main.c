@@ -14,8 +14,8 @@ main(int argc, char **argv)
 {
   if (argc < 2)
   {
-    printf("Usage: %s expression\n", argv[0]);
-    printf("e.g    %s '5 1 2 + 4 * + 3 -'\n", argv[0]);
+    printf("Usage: %s expression in infix\n", argv[0]);
+    printf("e.g    %s '10 + 3 * 5 / ( 16 - 4 )'\n", argv[0]);
     return 1;
   }
 
