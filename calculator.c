@@ -83,10 +83,27 @@ evaluate_rpn(char **expression, int num, int *result)
 
 
 void
+add_to_res(char *token, char ***res, int *num)
+{
+  *res = realloc(*res, sizeof(char*) * ++(*num));
+  (*res)[*num - 1] = token;
+}
+
+
+char *
+add_null_terminator(char token)
+{
+  char *s = (char*) malloc(sizeof(char) * 2);
+  s[0] = token;
+  s[1] = '\0';
+  return s;
+}
+
+
+void
 infix_to_rpn(char **expression, int num, char ***result, int *resnum)
 {
   Stack *stack = create_stack();
-  int j = 0;
 
   int i;
   for (i = 0; i < num; ++i)
@@ -97,8 +114,8 @@ infix_to_rpn(char **expression, int num, char ***result, int *resnum)
     {
       while (!is_empty(stack) && precedence(peek(stack)) >= precedence(*token))
       {
-        ++j;
-        printf("%c ", pop(stack));
+        char *s = add_null_terminator(pop(stack));
+        add_to_res(s, result, resnum);
       }
       push(stack, *token);
     }
@@ -111,27 +128,20 @@ infix_to_rpn(char **expression, int num, char ***result, int *resnum)
       char topToken = pop(stack);
       while (topToken != '(')
       {
-        ++j;
-        printf("%c ", topToken);
+        char *s = add_null_terminator(topToken);
+        add_to_res(s, result, resnum);
         topToken = pop(stack);
       }
     }
     else
     {
-      ++j;
-      printf("%s ", token);
+      add_to_res(token, result, resnum);
     }
   }
 
   while (!is_empty(stack))
   {
-    ++j;
-    char s[2] = "\0";
-    s[0] = pop(stack);
-    printf("%s ", s);
+    char *s = add_null_terminator(pop(stack));
+    add_to_res(s, result, resnum);
   }
-
-  printf("\n");
-
-  *resnum = j;
 }
